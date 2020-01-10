@@ -1,5 +1,7 @@
 package Exam;
 
+import java.util.Arrays;
+
 /*
 	문제) 태양계 행성을 나타내는 enum Planet을 이용하여 구하시오.
 	(단, enum 객체 생성시 반지름을 이용하도록 정의하시오.) 
@@ -25,24 +27,29 @@ public class PlanetTest {
 		천왕성(25362), 
 		해왕성(24622);
 		
-		private int num;
+		private double num;
 		
-		private Planet(int num) {
+		private Planet(double num) {
 			this.num = num;
 		}
 		
-		public int getR(){
+		public double getRadius(){
 			return num;
+		}
+		public double getArea(Planet p) {
+			return p.getRadius()*p.getRadius()*Math.PI;
 		}
 	}
 	
 	public static void main(String[] args) {
-		Planet p = Planet.금성;
-		
+		Planet p = Planet.토성;
+		for (Planet s : Planet.values()) {
+			System.out.println(s.name() + " / " + s.getArea(s));
+		}
+		System.out.println(Arrays.toString(Planet.values()));
 		System.out.println(p.name());
 		System.out.println(p.ordinal());
-		System.out.println(p.getR());
+		System.out.println(p.getArea(p));
 		
-		System.out.println(p.compareTo(Planet.지구));
 	}
 }
