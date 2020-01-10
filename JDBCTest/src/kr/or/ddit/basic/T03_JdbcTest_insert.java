@@ -25,10 +25,9 @@ public class T03_JdbcTest_insert {
 			String passWord = "java";
 			
 			conn = DriverManager.getConnection(url, userId, passWord);
-
+/*
 			stat = conn.createStatement();
 			
-			/*
 			String sql = "INSERT INTO lprod (lprod_id, lprod_gu, lprod_nm)"
 					+ " VALUES (101,'N101','농산물')";
 
@@ -36,7 +35,6 @@ public class T03_JdbcTest_insert {
 			// executeUpdate()는 실행에 성공한 레코드 수를 반환한다.
 			int cnt = stat.executeUpdate(sql);
 			System.out.println("첫번째 반환값 : " + cnt);
-			
 			
 			sql = "INSERT INTO lprod (lprod_id, lprod_gu, lprod_nm)"
 					+ " VALUES (102,'N102','수산물')";
@@ -47,9 +45,8 @@ public class T03_JdbcTest_insert {
 					+ " VALUES (103,'N103','축산물')";
 			cnt = stat.executeUpdate(sql);
 			System.out.println("세번째 반환값 : " + cnt);
-			*/
-			
-			
+*/
+						
 			// PreparedStatement 객체를 이용한 자료 추가 방법
 
 			// SQL문 작성시 데이터가 들어갈자리에 물음표(?)를 넣는다.
