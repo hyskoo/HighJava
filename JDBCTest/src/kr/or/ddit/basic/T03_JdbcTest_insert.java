@@ -3,6 +3,7 @@ package kr.or.ddit.basic;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,7 +17,7 @@ public class T03_JdbcTest_insert {
 		Connection conn = null;
 		Statement stat = null;
 		PreparedStatement pstmt = null;
-		
+		ResultSet rs = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
@@ -46,7 +47,7 @@ public class T03_JdbcTest_insert {
 			cnt = stat.executeUpdate(sql);
 			System.out.println("세번째 반환값 : " + cnt);
 */
-						
+/*						
 			// PreparedStatement 객체를 이용한 자료 추가 방법
 
 			// SQL문 작성시 데이터가 들어갈자리에 물음표(?)를 넣는다.
@@ -83,7 +84,23 @@ public class T03_JdbcTest_insert {
 
 			System.out.println("세번째 반환값 : " + cnt);
 			// ---------------------------------------------------------
+*/
+			stat = conn.createStatement();
 			
+			String lprod_gu = "N103"; // 사용자 입력값
+			String sql = "select * from lprod where lprod_gu = ? and lprod_nm = '축산물'"; 
+			System.out.println("실행할 쿼리 : " + sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, lprod_gu);
+			rs = pstmt.executeQuery();
+			
+			System.out.println("--------실행결과-----------");
+			while (rs.next()) {
+				System.out.println("lprod_id : " + rs.getInt("lprod_id"));
+				System.out.println("lprod_gu : " + rs.getString("lprod_gu"));
+				System.out.println("lprod_nm : " + rs.getString(3));
+				System.out.println("----------------------------------------");
+			}
 			
 			System.out.println("작업완료");
 			
@@ -91,7 +108,7 @@ public class T03_JdbcTest_insert {
 			System.out.println("JDBC 드라이버 로딩 실패");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("SQLException 발생");
 			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
