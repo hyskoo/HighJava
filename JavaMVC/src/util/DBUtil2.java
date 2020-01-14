@@ -1,4 +1,4 @@
-package kr.or.ddit.util;
+package util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ public class DBUtil2 {
 		prop = new Properties();
 
 		try {
-			File file = new File("res/db_ko.properties");
+			File file = new File("res/db.properties");
 			FileInputStream fin = new FileInputStream(file);
 			prop.load(fin);
 

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import kr.or.ddit.util.DBUtil2;
+import kr.or.ddit.util.DBUtil3;
 
 /*
 	회원정보를 관리하는 프로그램을 작성하는데 
@@ -205,7 +206,7 @@ public class T05_MemberInfoTest {
 		System.out.println("--------------------------------------------------------");
 		
 		try {
-			conn = DBUtil2.getConnection();
+			conn = DBUtil3.getConnection();
 			String sql = "select * from mymember";
 			
 			stmt = conn.createStatement();

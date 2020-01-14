@@ -1,4 +1,4 @@
-package kr.or.ddit.basic;
+package Exam;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -272,10 +272,11 @@ public class BoardTest {
 		String input = scan.nextLine();
 		try {
 			conn = DBUtil2.getConnection();
-			String sql = "SELECT * FROM jdbc_board WHERE board_title LIKE ?";
+			String sql = "SELECT * FROM jdbc_board WHERE board_title LIKE '%'||?||'%'";
 			
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, "%"+input+"%");
+			ps.setString(1, input);
+//			ps.setString(1, "%"+input+"%");
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				int boardNo = rs.getInt("board_no");
