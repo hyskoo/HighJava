@@ -9,11 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
+import kr.or.ddit.member.controller.MemberMain;
 import kr.or.ddit.member.vo.MemberVO;
 import kr.or.ddit.util.DBUtil2;
 import kr.or.ddit.util.DBUtil3;
 
 public class MemberDaoImpl implements IMemberDao {
+
+	private static final Logger sqlLogger = Logger.getLogger("log4jexam.sql.Query");
+	private static final Logger paramLogger = Logger.getLogger("log4jexam.sql.Parameter");
+	private static final Logger resultLogger = Logger.getLogger(MemberMain.class);
+	
 	
 	private static MemberDaoImpl dao;
 	
@@ -50,12 +58,20 @@ public class MemberDaoImpl implements IMemberDao {
 		try {
 			conn = DBUtil2.getConnection();
 			String sql = "insert into mymember (mem_id, mem_name, mem_tel, mem_addr) values (?,?,?,?)";
+			
+			sqlLogger.debug("쿼리 : " + sql);
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mv.getMem_id());
 			pstmt.setString(2, mv.getMem_name());
 			pstmt.setString(3, mv.getMem_tel());
 			pstmt.setString(4, mv.getMem_addr());
+			
+			paramLogger.debug("파라미터 : (" + mv.toString() + ")");
+			
 			cnt = pstmt.executeUpdate();
+			
+			resultLogger.warn("결과 : " + cnt);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

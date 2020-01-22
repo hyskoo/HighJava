@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -45,6 +46,73 @@ public class MemberIbatisTest {
 			} else {
 				System.out.println("Insert작업 실패");
 			}
+			System.out.println("-----------------------------------");
+			
+//			2-2. update 작업연습
+			System.out.println("update 작업시작..");
+			
+			MemberVO mv1 = new MemberVO();
+			mv1.setMem_id("d001");
+			mv1.setMem_name("홍수환");
+			mv1.setMem_tel("010-9999-9999");
+			mv1.setMem_addr("대전시 중구 대동");
+			
+			int cnt = smc.update("memberTest.updateMember", mv1);
+			if (cnt > 0) {
+				System.out.println("Update작업 성공");
+			} else {
+				System.out.println("Update작업 실패");
+			}
+			System.out.println("-----------------------------------");
+		
+//			2-3. delete 작업연습
+			System.out.println("Delete 작업시작..");
+
+			// delete 메소드의 반환값 : 성공한 레코드 수
+			
+			int cnt1 = smc.delete("memberTest.deleteMember", "d001");
+			if (cnt1 > 0) {
+				System.out.println("Delete작업 성공");
+			} else {
+				System.out.println("Delete작업 실패");
+			}
+			System.out.println("-----------------------------------");
+			
+//			2-4. select 작업연습
+			// 1) 응답의 결과가 여러개인 경우
+			System.out.println("select 작업시작..");
+			
+			List<MemberVO> memList = smc.queryForList("memberTest.selectMember");
+			
+			// 응답결과가 여러개일 경우에는 queryForList메소드를 사용한다.
+			// 이 메소드는 여러개의 레코드를 VO에 담은 후 VO데이터를 List에 추가해주는 작업을 자동으로 한다.
+			for (MemberVO memVO : memList) {
+				System.out.println("ID : " + memVO.getMem_id());
+				System.out.println("이름 : " + memVO.getMem_name());
+				System.out.println("전화 : " + memVO.getMem_tel());
+				System.out.println("주소 : " + memVO.getMem_addr());
+			}
+			if (memList != null) {
+				System.out.println("Select작업 성공");
+			} else {
+				System.out.println("Select작업 실패");
+			}
+			System.out.println("-----------------------------------");
+			
+			
+			// 2) 응답 결과가 1개인 경우
+			System.out.println("select 작업시작..(결과가 1개인 경우)");
+			
+			// 응답결과가 1개가 확실한 경우에는 queryForObject메소드를 사용한다.
+			MemberVO memListOne = (MemberVO) smc.queryForObject("memberTest.getMember", "d002");
+			
+			// 응답결과가 여러개일 경우에는 queryForList메소드를 사용한다.
+			// 이 메소드는 여러개의 레코드를 VO에 담은 후 VO데이터를 List에 추가해주는 작업을 자동으로 한다.
+			System.out.println("ID : " + memListOne.getMem_id());
+			System.out.println("이름 : " + memListOne.getMem_name());
+			System.out.println("전화 : " + memListOne.getMem_tel());
+			System.out.println("주소 : " + memListOne.getMem_addr());
+
 			System.out.println("-----------------------------------");
 		} catch (IOException e) {
 			e.printStackTrace();

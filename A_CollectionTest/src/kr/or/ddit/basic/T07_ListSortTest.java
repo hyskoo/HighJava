@@ -110,7 +110,6 @@ class Member implements Comparable<Member>{
 	// 이름을 기준으로 오름차순 정렬이 되도록 설정한다.
 	@Override
 	public int compareTo(Member mem) {
-		
 		return this.getName().compareTo(mem.getName());
 	}
 	
