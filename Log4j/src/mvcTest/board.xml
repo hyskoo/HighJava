@@ -11,7 +11,7 @@
 	</select>
 
 	<insert id="insertBoard" parameterClass="BoardVO">
-		INSERT INTO jdbc_board VALUES (BOARD_SEQ.NEXTVAL, #board_title#, #board_writer#, SYSDATE, #board_content#)
+		INSERT INTO jdbc_board VALUES (#board_no#, #board_title#, #board_writer#, SYSDATE, #board_content#)
 	</insert>
 	
 	<update id="updateBoard" parameterClass="BoardVO">
