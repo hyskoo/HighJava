@@ -50,14 +50,12 @@ public class T02_JdbcTest_select {
 			System.out.println("JDBC 드라이버 로딩 실패");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -65,7 +63,6 @@ public class T02_JdbcTest_select {
 				try {
 					stat.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -73,7 +70,6 @@ public class T02_JdbcTest_select {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -52,10 +52,10 @@ public class T05_MemberInfoTest {
 		System.out.println();
 		System.out.println("----------------------");
 		System.out.println("  === 작 업 선 택 ===");
-		System.out.println("  1. 자료 입력");
-		System.out.println("  2. 자료 삭제");
-		System.out.println("  3. 자료 수정");
-		System.out.println("  4. 전체 자료 출력");
+		System.out.println("  1. 회원 입력");
+		System.out.println("  2. 회원 삭제");
+		System.out.println("  3. 회원 수정");
+		System.out.println("  4. 전체 회원 출력");
 		System.out.println("  5. 작업 끝.");
 		System.out.println("----------------------");
 		System.out.print("원하는 작업 선택 >> ");
@@ -70,16 +70,16 @@ public class T05_MemberInfoTest {
 			displayMenu(); //메뉴 출력
 			choice = scan.nextInt(); // 메뉴번호 입력받기
 			switch(choice){
-				case 1 :  // 자료 입력
+				case 1 :  // 회원 입력
 					insertMember();
 					break;
-				case 2 :  // 자료 삭제
+				case 2 :  // 회원 삭제
 					deleteMember();
 					break;
-				case 3 :  // 자료 수정
+				case 3 :  // 회원 수정
 					updateMember();
 					break;
-				case 4 :  // 전체 자료 출력
+				case 4 :  // 전체 회원 출력
 					dispalymemberAll();
 					break;
 				case 5 :  // 작업 끝
@@ -183,13 +183,13 @@ public class T05_MemberInfoTest {
 			int cnt = pstmt.executeUpdate();
 			
 			if (cnt > 0) {
-				System.out.println(memId + "님의 회원정보 수정 성공!!!");
+				System.out.println(memId + "님의 회원정보 수정 성공");
 			} else {
-				System.out.println(memId + "님의 회원정보 수정 실패 oㅠㅠo");
+				System.out.println(memId + "님의 회원정보 수정 실패");
 			}
 			
 		} catch (SQLException e) {
-			System.out.println(memId + "님의 회원정보 수정 실패 oㅠㅠo");
+			System.out.println(memId + "님의 회원정보 수정 실패");
 			e.printStackTrace();
 		} finally {
 			disConnect();

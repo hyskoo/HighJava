@@ -132,12 +132,15 @@ class Horse extends Thread implements Comparable<Horse> {
 	}
 	@Override
     public void run() {
+		int cnt = 0;
 		for (int i = 0; i < 50; i++) {
+			this.location += cnt;
 			try {
                 Thread.sleep((int) (Math.random() * 500) + 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+			cnt++;
 		}
     }
     public String getHName() {

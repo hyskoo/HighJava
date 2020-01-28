@@ -115,7 +115,6 @@ public class T03_JdbcTest_insert {
 				try {
 					pstmt.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -123,7 +122,6 @@ public class T03_JdbcTest_insert {
 				try {
 					stat.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -131,7 +129,6 @@ public class T03_JdbcTest_insert {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

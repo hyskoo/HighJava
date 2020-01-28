@@ -25,13 +25,13 @@ public class BoardDaoImpl implements BoardDao {
 		return instance;
 	}
 	
-	private Connection conn;
+	private Connection conn;  // Connection 객체  JDBC연결을 위해서 java에서 제공해주는 객체. getConection()로 DB를 연결한다.
 	private Statement st;
-	private PreparedStatement ps;
+	private PreparedStatement ps; // Statement객체에서 SQL Injection문제 발생으로 인해서 발생된것. sql문을 선언한후 값을 넣는 방식이기에 보안성이 높다.
 	private ResultSet rs;
 
 	/*
-	 * 자원반납 메소드
+	 * 자원반납 메소드 : 사용한 자원을 필수적으로 반납을 해야만 하므로 재활용성을 위해서 메소드로 만들었다.
 	 */
 	public void disConnect() {
 		if(rs!=null)try{ rs.close(); }catch(SQLException ee){}

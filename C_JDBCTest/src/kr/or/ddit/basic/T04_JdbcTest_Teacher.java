@@ -69,8 +69,7 @@ public class T04_JdbcTest_Teacher {
 					count = rs.getInt("cnt");
 				}
 				if(count>0){
-					System.out.println("상품 분류 코드 " + gu + "은(는) "
-							+ "이미 있는 상품입니다.");
+					System.out.println("상품 분류 코드 " + gu + "은(는) 이미 있는 상품입니다.");
 					System.out.println("다시 입력하세요.");
 					System.out.println();
 				}

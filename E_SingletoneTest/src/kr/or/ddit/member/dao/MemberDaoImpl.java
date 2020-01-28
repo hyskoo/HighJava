@@ -58,8 +58,16 @@ public class MemberDaoImpl implements IMemberDao {
 		try {
 			conn = DBUtil2.getConnection();
 			String sql = "insert into mymember (mem_id, mem_name, mem_tel, mem_addr) values (?,?,?,?)";
+//			String sql = "insert into mymember (mem_id, mem_tel, mem_addr) values (?,?,?,?)";
+			sqlLogger.warn("쿼리 : " + sql);
 			
-			sqlLogger.debug("쿼리 : " + sql);
+			/*
+				WARN MemberDaoImpl.insertMember:62 - 쿼리 : insert into mymember (mem_id, mem_tel, mem_addr) values (?,?,?,?)
+  				DEBUG MemberDaoImpl.insertMember:70 - 파라미터 : (MemberVO [mem_id = 66, mem_name = 66, mem_tel = 66, mem_addr = 66])
+  				java.sql.SQLSyntaxErrorException: ORA-00913: too many values
+  				
+  				insert쿼리에서 해당하는 컬럼보다 많은 수의 value값을 보내서 생기는 에러
+			 */
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mv.getMem_id());

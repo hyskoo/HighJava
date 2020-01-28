@@ -19,6 +19,7 @@ public class DBUtil3 {
 	}
 	public static Connection getConnection() {
 		try {
+			// db.properties파일에 있는 내용을 가져오는것. ResuorceBundle 객체를 통해서 db라는 이름의 properties파일을 들고온다.
 			return DriverManager.getConnection(bundle.getString("url"), bundle.getString("user"), bundle.getString("pass"));
 		} catch (SQLException e) {
 			System.out.println("DB연결에 실패하셨습니다");
