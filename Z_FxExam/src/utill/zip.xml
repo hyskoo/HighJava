@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+			
+<sqlMap namespace="zip">
+	<select id="searchData" resultClass="ZipVO" parameterClass="HashMap">
+		SELECT zipcode,sido,gugun,dong,bunji 
+		FROM ziptb
+		WHERE 1=1
+		<isNotEmpty prepend="AND" property="dongSearch">
+			dong LIKE '%'|| #dongSearch# ||'%'
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="zipSearch">
+			zipcode LIKE '%' || #zipSearch# || '%'
+		</isNotEmpty>
+		
+		
+		<!-- String타입으로 파라미터를 받을경우 property는 자유롭게 설정가능. -->
+<!-- 		<isNotEmpty prepend="AND" property="aa"> -->
+<!-- 			zipcode LIKE '%' || #aa# || '%' -->
+<!-- 		</isNotEmpty> -->
+	</select>
+</sqlMap>

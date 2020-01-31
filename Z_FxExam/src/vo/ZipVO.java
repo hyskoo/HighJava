@@ -10,6 +10,8 @@ public class ZipVO {
 	private String bldg;
 	private int seq;
 	
+	// ibatis는 내부에서 기본생성자로 생성을 하므로 기본생성자를 만들어줘야한다.
+	public ZipVO() {}
 	
 	public ZipVO(String zipcode, String sido, String gugun, String dong, String bunji, String ri, String bldg,
 			int seq) {

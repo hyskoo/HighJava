@@ -1,4 +1,4 @@
-package controller;
+package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class ZipMain extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Zip.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Zip.fxml"));
 		Parent root = loader.load();
 		
 		Scene scene = new Scene(root);
