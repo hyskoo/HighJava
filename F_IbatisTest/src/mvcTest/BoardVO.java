@@ -3,11 +3,11 @@ package mvcTest;
 import java.util.Date;
 
 public class BoardVO {
-	private int board_no;
-	private String board_title;
-	private String board_writer;
-	private Date board_date;
-	private String board_content;
+	private int board_no;		// 게시판번호
+	private String board_title; // 게시판 제목
+	private String board_writer;// 게시판 작성자
+	private Date board_date;	// 게시판 작성시간
+	private String board_content; // 게시판 내용
 	
 	
 	public int getBoard_no() {

@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
@@ -39,17 +40,19 @@ public class PagingController implements Initializable{
 			allTableData.add(new MemberVO(j+"", "홍길동", "대전시 중구 대흥동 대덕인재개발원"));
 		}
 		
-		itemsForPage = 5; //한페이지당 보여줄 항목 갯수
+		itemsForPage = 5; //한페이지당 보여줄 항목 갯수, 테이블에서보이는갯수는 이것에 + 1개
 		int totalPageCount = allTableData.size()%itemsForPage == 0 ? allTableData.size()/itemsForPage : allTableData.size()/itemsForPage + 1;
-		
+
+		pagination.setMaxPageIndicatorCount(5);   // 한번에 보여지는 page indicator
 		pagination.setPageCount(totalPageCount); // 전체 페이지수 설정
-		
+		pagination.setPadding(new Insets(0));
+		pagination.setPrefHeight((itemsForPage*40) + 5);
 		pagination.setPageFactory(new Callback<Integer, Node>() {
-			
+		
 			@Override
 			public Node call(Integer pageIndex) {
-				from = pageIndex * itemsForPage;
-				to = from + itemsForPage;
+				from = pageIndex * itemsForPage; // 각 인덱스별 시작번호
+				to = from + itemsForPage; // 테이블의 row갯수
 				tableView.setItems(getTableViewData(from, to));
 				
 				return tableView;
@@ -65,7 +68,7 @@ public class PagingController implements Initializable{
 				currentPageData = FXCollections.observableArrayList();
 				
 				int totalSize = allTableData.size();
-				for (int i = from; i <= to && i <totalSize; i++) {
+				for (int i = from; i < to && i <totalSize; i++) {
 					currentPageData.add(allTableData.get(i));
 				}
 				return currentPageData;
